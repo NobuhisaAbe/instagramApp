@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}">
+    <title>Kotlin Spring Sample</title>
+</head>
+<body>
+
+<h1>Model List</h1>
+
+<table>
+    <tr>
+        <th th:text="#{title.id}">No</th>
+        <th th:text="#{title.name}">Name</th>
+        <th th:text="#{title.price}">Price</th>
+        <th th:text="#{title.type}">Type</th>
+        <th th:text="#{title.note}">Note</th>
+    </tr>
+    <th:block th:each="model : ${modelList}">
+        <tr>
+            <td th:text="${model.id}"></td>
+            <td th:text="${model.name}"></td>
+            <td th:text="${model.price}"></td>
+            <td th:text="${model.type}"></td>
+            <!--/* model.toString()が実行される */-->
+            <td th:text="${model}"></td>
+        </tr>
+    </th:block>
+</table>
+
+</body>
+</html>
