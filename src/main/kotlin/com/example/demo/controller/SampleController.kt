@@ -14,7 +14,6 @@ class SampleController {
 
     @GetMapping("/")
     fun index(model: Model): String  {
-        println("---call samplecontroller---")
         val modelList = service.find()
         model.addAttribute("modelList", modelList)
         return "index"
