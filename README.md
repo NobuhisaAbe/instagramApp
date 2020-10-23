@@ -1,24 +1,24 @@
 # demo app
 
-###How to setup
+### How to setup
 before setup, run docker
 ```
 cd docker
 docker-compose up -d
 ```
 
-###How to run
-####web app
+### How to run
+#### web app
 ```
 ./grandlew bootRun
 ```
 
-####test
+#### test
 ```
 ./grandlew test
 ```
 
-####lint
+#### lint
 
 ```
 # Check
