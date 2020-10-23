@@ -1,0 +1,8 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: test
+    image: alpin:3.6
+    commands:
+      - echo "Hello world"
