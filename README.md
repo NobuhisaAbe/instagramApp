@@ -1,4 +1,4 @@
-#demo app
+# demo app
 
 ###How to setup
 before setup, run docker
