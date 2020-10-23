@@ -1,0 +1,4 @@
+USE sample;
+
+DROP FUNCTION IF EXISTS func_get_crypt_key;
+CREATE FUNCTION func_get_crypt_key() RETURNS CHAR(16) CHARSET UTF8 DETERMINISTIC RETURN 'TestKey';
