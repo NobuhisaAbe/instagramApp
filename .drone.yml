@@ -3,6 +3,6 @@ name: default
 
 steps:
   - name: test
-    image: adoptopenjdk/openjdk15
+    image: adoptopenjdk/openjdk15xxx
     commands:
       - echo "goodbye world"
