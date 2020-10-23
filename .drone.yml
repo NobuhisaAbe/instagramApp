@@ -5,4 +5,4 @@ steps:
   - name: test
     image: adoptopenjdk/openjdk15
     commands:
-      - echo "Hello world"
+      - echo "goodbye world"
