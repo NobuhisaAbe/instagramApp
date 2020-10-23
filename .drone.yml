@@ -3,6 +3,6 @@ name: default
 
 steps:
   - name: test
-    image: alpin
+    image: adoptopenjdk/openjdk15
     commands:
       - echo "Hello world"
