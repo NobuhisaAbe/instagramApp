@@ -1,5 +1,7 @@
 # demo app
 
+[![Build Status](https://cloud.drone.io/api/badges/NobuhisaAbe/demo/status.svg)](https://cloud.drone.io/NobuhisaAbe/demo)
+
 ### How to setup
 before setup, run docker
 ```
