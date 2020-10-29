@@ -1,4 +1,4 @@
-FROM openjdk:10.0.1-jdk
+FROM openjdk:latest
 
 RUN git clone https://github.com/NobuhisaAbe/demo.git
 WORKDIR ./demo
