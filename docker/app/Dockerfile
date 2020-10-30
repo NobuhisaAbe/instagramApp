@@ -1,4 +1,4 @@
-FROM openjdk:11.0-jre-slim
+FROM adoptopenjdk/openjdk15:jdk-15.0.1_9-slim
 
 #RUN git clone https://github.com/NobuhisaAbe/demo.git
 #WORKDIR ./demo
@@ -16,6 +16,7 @@ FROM openjdk:11.0-jre-slim
 #RUN ./gradlew --full-stacktrace -q build -x test
 
 #CMD ./gradlew bootRun
+RUN apt-get update && apt-get install -y git
 RUN git clone https://github.com/NobuhisaAbe/demo.git
 WORKDIR ./demo
 
