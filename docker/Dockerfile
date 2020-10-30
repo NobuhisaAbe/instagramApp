@@ -1,11 +1,11 @@
-FROM adoptopenjdk/openjdk11:jdk-11.0.6_10-alpine
+FROM openjdk:10.0.1-jdk
 
-RUN /bin/ash -c "git clone https://github.com/NobuhisaAbe/demo.git"
+RUN git clone https://github.com/NobuhisaAbe/demo.git
 WORKDIR ./demo
 
-RUN /bin/ash -c "./gradlew --full-stacktrace -q build"
+RUN ./gradlew --full-stacktrace -q build
 
-CMD /bin/ash -c "./gradlew bootRun"
+CMD ./gradlew bootRun
 
 #FROM adoptopenjdk/openjdk11:jdk-11.0.6_10-alpine
 #RUN mkdir -p /home/www/demo
