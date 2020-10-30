@@ -3,10 +3,10 @@ type: docker
 name: demo-ci
 
 steps:
-  - name: test
-    image: adoptopenjdk/openjdk15
-    commands:
-      - echo "Hello world"
+#  - name: test
+#    image: adoptopenjdk/openjdk15
+#    commands:
+#      - echo "Hello world"
   - name: slack
     image: plugins/slack
     settings:
