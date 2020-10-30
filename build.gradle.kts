@@ -29,11 +29,11 @@ dependencies {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
 }
-/*
+
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
-*/
+
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
