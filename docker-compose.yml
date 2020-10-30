@@ -1,20 +1,5 @@
 version: "3"
 services:
-#  mysql:
-#    image: mysql:5.7
-#    hostname: mysql
-#    ports:
-#      - "3306:3306"
-#    environment:
-#      MYSQL_ROOT_PASSWORD: root
-#      TZ: Asia/Tokyo
-#    command:
-#      - --max_allowed_packet=104857600
-#      - --character-set-server=utf8
-#      - --collation-server=utf8_unicode_ci
-#    volumes:
-#      - "../ddl:/docker-entrypoint-initdb.d"
-
   nginx:
     container_name: container_nginx
     build: docker/nginx
@@ -22,14 +7,28 @@ services:
     ports:
       - 80:8080
     hostname: container_nginx_hostname
-
   app:
     container_name: container_app
     build: docker/app
     restart: always
     ports:
-      - "8080"
+      - 8080
     command: ./gradlew bootRun
     hostname: container_app_hostname
     depends_on:
       - nginx
+      - mysql
+  mysql:
+    image: mysql:5.7
+    hostname: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      TZ: Asia/Tokyo
+    command:
+      - --max_allowed_packet=104857600
+      - --character-set-server=utf8
+      - --collation-server=utf8_unicode_ci
+    volumes:
+      - ../ddl:/docker-entrypoint-initdb.d
