@@ -1,4 +1,4 @@
-FROM openjdk:10.0.1-jdk
+FROM openjdk:15.0-jdk
 
 #RUN git clone https://github.com/NobuhisaAbe/demo.git
 #WORKDIR ./demo
