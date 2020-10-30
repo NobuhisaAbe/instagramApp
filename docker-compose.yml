@@ -18,9 +18,9 @@ services:
     container_name: container_app
     restart: always
     build: docker
-    ports:
-      - 8080:8080
+    expose:
+      - 8090
     command: ./gradlew bootRun
-    hostname: app
+    hostname: container_app_host
 #    depends_on:
 #      - "mysql"
