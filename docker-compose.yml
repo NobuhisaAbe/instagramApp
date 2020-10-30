@@ -2,25 +2,29 @@ version: "3"
 services:
   nginx:
     container_name: container_nginx
+    hostname: container_nginx_hostname
     build: docker/nginx
     restart: always
     ports:
       - 80:8080
-    hostname: container_nginx_hostname
   app:
     container_name: container_app
+    hostname: container_app_hostname
     build: docker/app
     restart: always
     ports:
       - 8080
     command: ./gradlew bootRun
-    hostname: container_app_hostname
+    links:
+      - mysql
     depends_on:
       - nginx
       - mysql
   mysql:
     image: mysql:5.7
-    hostname: mysql
+    container_name: container_mysql
+    hostname: container_mysql_hostname
+    restart: always
     ports:
       - 3306:3306
     environment:
@@ -32,3 +36,4 @@ services:
       - --collation-server=utf8_unicode_ci
     volumes:
       - ../ddl:/docker-entrypoint-initdb.d
+
