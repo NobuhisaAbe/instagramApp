@@ -18,22 +18,18 @@ services:
   nginx:
     container_name: container_nginx
     build: docker/nginx
+    restart: always
     ports:
       - 80:8080
     hostname: container_nginx_hostname
-    depends_on:
-      - app
-    links:
-      - app
 
   app:
     container_name: container_app
     build: docker/app
-#    ports:
-#      - "8080:8080"
-    expose:
-      - 8080
+    restart: always
+    ports:
+      - "8080"
     command: ./gradlew bootRun
     hostname: container_app_hostname
-#    depends_on:
-#      - "mysql"
+    depends_on:
+      - nginx
