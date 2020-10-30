@@ -16,7 +16,7 @@ FROM openjdk:15.0-jdk
 #RUN ./gradlew --full-stacktrace -q build -x test
 
 #CMD ./gradlew bootRun
-
+RUN yum -y install git
 RUN git clone https://github.com/NobuhisaAbe/demo.git
 WORKDIR ./demo
 
