@@ -14,8 +14,12 @@ class SampleController {
 
     @GetMapping("/")
     fun index(model: Model): String  {
+/*
         val modelList = service.find()
         model.addAttribute("modelList", modelList)
         return "index"
+ */
+        model.addAttribute("message", "Hello Springboot");
+        return "test";
     }
 }
