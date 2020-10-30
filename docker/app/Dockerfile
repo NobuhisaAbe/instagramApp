@@ -1,4 +1,4 @@
-FROM java:openjdk-8-jdk-alpine
+FROM openjdk:11.0-jre-slim
 
 #RUN git clone https://github.com/NobuhisaAbe/demo.git
 #WORKDIR ./demo
