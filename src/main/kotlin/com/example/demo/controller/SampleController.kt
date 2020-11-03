@@ -17,10 +17,5 @@ class SampleController {
         val modelList = service.find()
         model.addAttribute("modelList", modelList)
         return "index"
-/*
-        model.addAttribute("message", "Hello Springboot");
-        return "test";
-
- */
     }
 }

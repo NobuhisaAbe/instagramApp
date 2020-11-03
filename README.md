@@ -1,27 +1,27 @@
-# demo app
+#demo app
 
 [![Build Status](https://cloud.drone.io/api/badges/NobuhisaAbe/demo/status.svg)](https://cloud.drone.io/NobuhisaAbe/demo)
 
-### How to setup
-before setup, run docker
+###docker上での起動
+docker上でnginx,app,mysqlコンテナを構築しappを起動する
 ```
-cd docker
-docker-compose up -d
+docker-compose up
 ```
 
-### How to run
-#### web app
+###local開発環境での起動
+docker上でmysqlコンテナを構築
+```
+docker-compose -f docker-compose-local.yml up
+```
+app起動
 ```
 ./grandlew bootRun
 ```
-
-#### test
+test
 ```
 ./grandlew test
 ```
-
-#### lint
-
+lint
 ```
 # Check
 ./grandlew ktlintCheck
