@@ -3,10 +3,10 @@ type: docker
 name: demo-ci
 
 steps:
-#  - name: test
-#    image: openjdk:11.0-jre-slim
-#    commands:
-#      - echo "Hello world"
+  - name: test
+#    image: adoptopenjdk/openjdk15:jdk-15.0.1_9-slim
+    commands:
+      - echo "skip automatic test"
   - name: slack
     image: plugins/slack
     settings:
