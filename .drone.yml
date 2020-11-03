@@ -4,9 +4,9 @@ name: demo-ci
 
 steps:
 #  - name: test
-#    image: openjdk:11.0-jre-slim
+#    image: adoptopenjdk/openjdk15:jdk-15.0.1_9-slim
 #    commands:
-#      - echo "Hello world"
+#      - echo "skip automatic test"
   - name: slack
     image: plugins/slack
     settings:
