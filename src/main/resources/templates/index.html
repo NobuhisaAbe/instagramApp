@@ -3,31 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}">
-    <title>Kotlin Spring Sample</title>
+    <title>Instagram App</title>
 </head>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/screenfull.js/5.0.2/screenfull.min.js"></script>
 <body>
-
-<h1>Model List</h1>
-
-<table>
-    <tr>
-        <th th:text="#{title.id}">No</th>
-        <th th:text="#{title.name}">Name</th>
-        <th th:text="#{title.price}">Price</th>
-        <th th:text="#{title.type}">Type</th>
-        <th th:text="#{title.note}">Note</th>
-    </tr>
-    <th:block th:each="model : ${modelList}">
-        <tr>
-            <td th:text="${model.id}"></td>
-            <td th:text="${model.name}"></td>
-            <td th:text="${model.price}"></td>
-            <td th:text="${model.type}"></td>
-            <!--/* model.toString()が実行される */-->
-            <td th:text="${model}"></td>
-        </tr>
-    </th:block>
-</table>
-
+<div id="app">
+    <p>{{count}}</p>
+    <div id="image" v-bind:style="{'background-image': 'url(' + photo + ')'}"></div>
+</div>
 </body>
+<script src="../static/js/main.js" th:src="@{/js/main.js}"></script>
 </html>

@@ -1,1 +1,0 @@
-GRANT ALL ON sample.* TO 'sample_user'@'%' IDENTIFIED BY 'sample_pass';

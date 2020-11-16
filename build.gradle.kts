@@ -7,8 +7,8 @@ plugins {
 	kotlin("plugin.spring") version "1.3.72"
 }
 
-group = "com.example"
-version = "0.0.1-SNAPSHOT"
+group = "com.nobuhisaabe.instagram"
+version = "1.0.0"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
@@ -21,10 +21,13 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.3")
     implementation("org.junit.jupiter:junit-jupiter:5.4.2")
+	implementation("com.squareup.retrofit2:retrofit:2.4.0")
+	implementation("com.squareup.retrofit2:converter-jackson:2.4.0")
+	implementation("com.squareup.okhttp3:okhttp:3.11.0")
+	implementation("com.squareup.okhttp3:logging-interceptor:3.8.1")
+	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.8")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
-	runtimeOnly("mysql:mysql-connector-java")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
