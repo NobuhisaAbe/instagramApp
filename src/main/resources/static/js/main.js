@@ -56,11 +56,9 @@
                 }
             },
             getInstagram: function () {
-                alert("start ajax");
                 axios
-                    .get('http://localhost:8080/instagram/v1/get/instagramlist')
+                    .get('http://localhost:80/instagram/v1/get/instagramlist')
                     .then(response => (this.medias = response.data.medias));
-                alert("end ajax");
             }
         },
         created() {
