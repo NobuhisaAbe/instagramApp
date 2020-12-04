@@ -4,6 +4,7 @@ import com.nobuhisaabe.instagramApp.component.InstagramApiComponent
 import com.nobuhisaabe.instagramApp.domain.model.Instagram
 import com.nobuhisaabe.instagramApp.domain.model.Media
 import org.springframework.stereotype.Service
+import java.io.IOException
 
 @Service
 class InstagramService(

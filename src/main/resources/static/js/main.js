@@ -57,7 +57,7 @@
             },
             getInstagram: function () {
                 axios
-                    .get('http://35.209.183.156:80/instagram/v1/get/instagramlist')
+                    .get('http://' + url + '/instagram/v1/get/instagramlist')
                     .then(response => (this.medias = response.data.medias));
             }
         },

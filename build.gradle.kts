@@ -27,6 +27,9 @@ dependencies {
 	implementation("com.squareup.okhttp3:okhttp:3.11.0")
 	implementation("com.squareup.okhttp3:logging-interceptor:3.8.1")
 	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.8")
+	implementation("com.slack.api:slack-api-client:1.4.0")
+	implementation("com.slack.api:slack-api-model-kotlin-extension:1.4.0")
+	implementation("com.slack.api:slack-api-client-kotlin-extension:1.4.0")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
