@@ -1,9 +1,9 @@
 spring:
   profiles:
-    active: prod
-instagram_api:
+    active: ${SPRING_PROFILES_ACTIVE:prod}
+instagram:
   baseurl: https://graph.instagram.com/
-  userid: 17841401574940612
-  accesstoken: IGQVJVTVBVSGxUWUNBRTExa1dWYXJ3ZAkgtZAUlkMFdURWFVMnFKNmUwODl5dmxaQnQza01KVEtGY0JvemFOMFBDSDJ5RzhIUEV0dWhRLTF2TDM1SlptRmFETG03ejgzd2hTN0dKZAGdB
-slack_api:
-  token: xoxb-1449274143842-1533872551568-dA4bc55PwIwNWs7mADymtXlT
+  userid: ${INSTAGRAM_USERID}
+  accesstoken: ${INSTAGRAM_ACCESSTOKEN}
+slack:
+  token: ${SLACK_TOKEN}

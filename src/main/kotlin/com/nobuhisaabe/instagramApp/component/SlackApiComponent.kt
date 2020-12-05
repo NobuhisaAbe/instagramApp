@@ -15,7 +15,7 @@ import org.springframework.web.servlet.function.RequestPredicates.methods
 class SlackApiComponent() {
 
     val slack = Slack.getInstance()
-    @Value("\${slack_api.token}")
+    @Value("\${slack.token}")
     val token: String = ""
 
     fun plainMessage(channel: String, message: String) {

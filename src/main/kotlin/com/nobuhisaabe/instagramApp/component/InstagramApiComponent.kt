@@ -14,18 +14,17 @@ import org.springframework.stereotype.Component
 @Component
 class InstagramApiComponent() {
 
-    @Value("\${instagram_api.baseurl}")
+    @Value("\${instagram.baseurl}")
     val baseUrl: String = ""
-    @Value("\${instagram_api.userid}")
+    @Value("\${instagram.userid}")
     val userId: String = ""
-    @Value("\${instagram_api.accesstoken}")
+    @Value("\${instagram.accesstoken}")
     val accessToken: String = ""
 
     /**
      * インスタグラム情報をapiで取得する。
      */
     fun getInstagram(): GetInstagramResponse {
-
         val url = baseUrl + GetInstagramRequest(userId,accessToken).getUrl()
         val request: Request = Request.Builder().url(url).get().build()
         val response: Response = OkHttpClient().newCall(request).execute()
