@@ -15,5 +15,10 @@ services:
     ports:
       - 8080
     command: ./gradlew bootRun
+    environment:
+      - INSTAGRAM_USERID
+      - INSTAGRAM_ACCESSTOKEN
+      - SLACK_TOKEN
+      - SPRING_PROFILES_ACTIVE
     depends_on:
       - nginx
