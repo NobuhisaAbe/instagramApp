@@ -37,20 +37,10 @@ class SlackApiComponent() {
      * slack用のaccesstokenを取得する。
      */
     fun getGcpMetaDataAccessToken(): String {
-        println("!!!!! start getGcpMetaDataAccessToken !!!!!")
-
         val url = gcpBaseUrl + "SLACK_TOKEN"
-        println("!!!!!" + url + "!!!!!")
         val request: Request = Request.Builder().url(url).addHeader("Metadata-Flavor", "Google").get().build()
-        println("!!!!! getGcpMetaDataAccessToken_request: " + request)
-
         val response: Response = OkHttpClient().newCall(request).execute()
-        println("!!!!! getGcpMetaDataAccessToken_response: " + response)
-
         val accessToken: String = response.body()!!.string()
-        println("!!!!! getGcpMetaDataAccessToken_userId: " + accessToken)
-
-        println("!!!!! end getGcpMetaDataUserId() !!!!!")
         return accessToken
     }
 

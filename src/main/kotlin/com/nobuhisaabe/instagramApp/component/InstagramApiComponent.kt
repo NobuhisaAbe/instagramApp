@@ -28,11 +28,9 @@ class InstagramApiComponent() {
      */
     fun initEnv() {
         if (env == "prod") {
-            println("!!!!! enter prod section: " + env + " !!!!!")
             userId = getGcpMetaDataUserId()
             accessToken = getGcpMetaDataAccessToken()
         } else {
-            println("!!!!! enter not prod section: " + env + "  !!!!!")
             userId = "\${instagram.userid}"
             accessToken = "\${instagram.accesstoken}"
         }
@@ -43,22 +41,12 @@ class InstagramApiComponent() {
      * instagram用のuseridを取得する。
      */
     fun getGcpMetaDataUserId(): String {
-        println("!!!!! start getGcpMetaDataUserId() !!!!!")
-
         val url = gcpBaseUrl + "INSTAGRAM_USERID"
-        println("!!!!!" + url + "!!!!!")
         val request: Request = Request.Builder().url(url).addHeader("Metadata-Flavor", "Google").get().build()
-        println("!!!!! getGcpMetaDataUserId_request: " + request)
-
         val response: Response = OkHttpClient().newCall(request).execute()
-        println("!!!!! getGcpMetaDataUserId_response: " + response)
-
         val userId: String = response.body()!!.string()
-        println("!!!!! getGcpMetaDataUserId_userId: " + userId)
 
-        println("!!!!! end getGcpMetaDataUserId() !!!!!")
         return userId
-
     }
 
     /**
@@ -66,20 +54,11 @@ class InstagramApiComponent() {
      * instagram用のaccesstokenを取得する。
      */
     fun getGcpMetaDataAccessToken(): String {
-        println("!!!!! start getGcpMetaDataAccessToken !!!!!")
-
         val url = gcpBaseUrl + "INSTAGRAM_ACCESSTOKEN"
-        println("!!!!!" + url + "!!!!!")
         val request: Request = Request.Builder().url(url).addHeader("Metadata-Flavor", "Google").get().build()
-        println("!!!!! getGcpMetaDataAccessToken_request: " + request)
-
         val response: Response = OkHttpClient().newCall(request).execute()
-        println("!!!!! getGcpMetaDataAccessToken_response: " + response)
-
         val accessToken: String = response.body()!!.string()
-        println("!!!!! getGcpMetaDataAccessToken_userId: " + accessToken)
 
-        println("!!!!! end getGcpMetaDataUserId() !!!!!")
         return accessToken
     }
 
