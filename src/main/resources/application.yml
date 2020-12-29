@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: ${SPRING_PROFILES_ACTIVE:prod}
+    active: ${SPRING_PROFILES_ACTIVE:local}
 server:
   port: 8080
 instagram:
@@ -9,3 +9,5 @@ instagram:
   accesstoken: ${INSTAGRAM_ACCESSTOKEN}
 slack:
   token: ${SLACK_TOKEN}
+gcp:
+  baseurl: http://metadata.google.internal/computeMetadata/v1/project/attributes/

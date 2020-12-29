@@ -14,17 +14,67 @@ import org.springframework.stereotype.Component
 @Component
 class InstagramApiComponent() {
 
+    @Value("\${gcp.baseurl}")
+    val gcpBaseUrl: String = ""
     @Value("\${instagram.baseurl}")
     val baseUrl: String = ""
     @Value("\${instagram.userid}")
-    val userId: String = ""
+    var userId: String = ""
     @Value("\${instagram.accesstoken}")
-    val accessToken: String = ""
+    var accessToken: String = ""
+
+
+    /**
+     * ※productionのgcp環境のみ
+     * instagram用のuseridを取得する。
+     */
+    fun getGcpMetaDataUserId(): String {
+        println("!!!!! start getGcpMetaDataUserId() !!!!!")
+
+        val url = gcpBaseUrl + "INSTAGRAM_USERID"
+        println("!!!!!" + url + "!!!!!")
+        val request: Request = Request.Builder().url(url).addHeader("Metadata-Flavor", "Google").get().build()
+        println("!!!!! getGcpMetaDataUserId_request: " + request)
+
+        val response: Response = OkHttpClient().newCall(request).execute()
+        println("!!!!! getGcpMetaDataUserId_response: " + response)
+
+        val userId: String = response.body()!!.string()
+        println("!!!!! getGcpMetaDataUserId_userId: " + userId)
+
+        println("!!!!! end getGcpMetaDataUserId() !!!!!")
+        return userId
+
+    }
+
+    /**
+     * ※productionのgcp環境のみ
+     * instagram用のaccesstokenを取得する。
+     */
+    fun getGcpMetaDataAccessToken(): String {
+        println("!!!!! start getGcpMetaDataAccessToken !!!!!")
+
+        val url = gcpBaseUrl + "INSTAGRAM_ACCESSTOKEN"
+        println("!!!!!" + url + "!!!!!")
+        val request: Request = Request.Builder().url(url).addHeader("Metadata-Flavor", "Google").get().build()
+        println("!!!!! getGcpMetaDataAccessToken_request: " + request)
+
+        val response: Response = OkHttpClient().newCall(request).execute()
+        println("!!!!! getGcpMetaDataAccessToken_response: " + response)
+
+        val accessToken: String = response.body()!!.string()
+        println("!!!!! getGcpMetaDataAccessToken_userId: " + accessToken)
+
+        println("!!!!! end getGcpMetaDataUserId() !!!!!")
+        return accessToken
+    }
 
     /**
      * インスタグラム情報をapiで取得する。
      */
     fun getInstagram(): GetInstagramResponse {
+        userId = getGcpMetaDataUserId()
+        accessToken = getGcpMetaDataAccessToken()
         val url = baseUrl + GetInstagramRequest(userId,accessToken).getUrl()
         val request: Request = Request.Builder().url(url).get().build()
         val response: Response = OkHttpClient().newCall(request).execute()
@@ -39,7 +89,7 @@ class InstagramApiComponent() {
      * インスタグラムのmedia情報をapiで取得する。
      */
     fun getInstagramMedia(mediaId: String): GetInstagramMediaResponse {
-
+        accessToken = getGcpMetaDataAccessToken()
         val url = baseUrl + GetInstagramMediaRequest(mediaId,accessToken).getUrl()
         val request: Request = Request.Builder().url(url).get().build()
         val response: Response = OkHttpClient().newCall(request).execute()
