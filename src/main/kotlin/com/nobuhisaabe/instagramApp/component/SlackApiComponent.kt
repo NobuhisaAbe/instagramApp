@@ -6,6 +6,9 @@ import com.slack.api.methods.request.chat.ChatPostMessageRequest
 import com.slack.api.methods.response.chat.ChatPostMessageResponse
 import com.slack.api.model.block.Blocks.divider
 import com.slack.api.model.block.Blocks.section
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import org.springframework.web.servlet.function.RequestPredicates.methods
@@ -14,9 +17,42 @@ import org.springframework.web.servlet.function.RequestPredicates.methods
 @Component
 class SlackApiComponent() {
 
+    @Value("\${spring.profiles.active}")
+    val env: String = ""
+    @Value("\${gcp.baseurl}")
+    val gcpBaseUrl: String = ""
     val slack = Slack.getInstance()
-    @Value("\${slack.token}")
-    val token: String = ""
+    var token: String = ""
+
+    init {
+        if (env == "prod") {
+            token = getGcpMetaDataAccessToken()
+        } else {
+            token = "\${slack.token}"
+        }
+    }
+
+    /**
+     * ※productionのgcp環境のみ
+     * slack用のaccesstokenを取得する。
+     */
+    fun getGcpMetaDataAccessToken(): String {
+        println("!!!!! start getGcpMetaDataAccessToken !!!!!")
+
+        val url = gcpBaseUrl + "SLACK_TOKEN"
+        println("!!!!!" + url + "!!!!!")
+        val request: Request = Request.Builder().url(url).addHeader("Metadata-Flavor", "Google").get().build()
+        println("!!!!! getGcpMetaDataAccessToken_request: " + request)
+
+        val response: Response = OkHttpClient().newCall(request).execute()
+        println("!!!!! getGcpMetaDataAccessToken_response: " + response)
+
+        val accessToken: String = response.body()!!.string()
+        println("!!!!! getGcpMetaDataAccessToken_userId: " + accessToken)
+
+        println("!!!!! end getGcpMetaDataUserId() !!!!!")
+        return accessToken
+    }
 
     fun plainMessage(channel: String, message: String) {
         val request = ChatPostMessageRequest.builder()

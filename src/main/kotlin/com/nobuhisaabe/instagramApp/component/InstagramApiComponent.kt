@@ -14,15 +14,29 @@ import org.springframework.stereotype.Component
 @Component
 class InstagramApiComponent() {
 
+    @Value("\${spring.profiles.active}")
+    val env: String = ""
     @Value("\${gcp.baseurl}")
     val gcpBaseUrl: String = ""
     @Value("\${instagram.baseurl}")
     val baseUrl: String = ""
-    @Value("\${instagram.userid}")
     var userId: String = ""
-    @Value("\${instagram.accesstoken}")
     var accessToken: String = ""
 
+    /**
+     * 環境変数の初期化
+     */
+    fun initEnv() {
+        if (env == "prod") {
+            println("!!!!! enter prod section: " + env + " !!!!!")
+            userId = getGcpMetaDataUserId()
+            accessToken = getGcpMetaDataAccessToken()
+        } else {
+            println("!!!!! enter not prod section: " + env + "  !!!!!")
+            userId = "\${instagram.userid}"
+            accessToken = "\${instagram.accesstoken}"
+        }
+    }
 
     /**
      * ※productionのgcp環境のみ
@@ -73,8 +87,7 @@ class InstagramApiComponent() {
      * インスタグラム情報をapiで取得する。
      */
     fun getInstagram(): GetInstagramResponse {
-        userId = getGcpMetaDataUserId()
-        accessToken = getGcpMetaDataAccessToken()
+        initEnv()
         val url = baseUrl + GetInstagramRequest(userId,accessToken).getUrl()
         val request: Request = Request.Builder().url(url).get().build()
         val response: Response = OkHttpClient().newCall(request).execute()
@@ -89,7 +102,7 @@ class InstagramApiComponent() {
      * インスタグラムのmedia情報をapiで取得する。
      */
     fun getInstagramMedia(mediaId: String): GetInstagramMediaResponse {
-        accessToken = getGcpMetaDataAccessToken()
+        initEnv()
         val url = baseUrl + GetInstagramMediaRequest(mediaId,accessToken).getUrl()
         val request: Request = Request.Builder().url(url).get().build()
         val response: Response = OkHttpClient().newCall(request).execute()
