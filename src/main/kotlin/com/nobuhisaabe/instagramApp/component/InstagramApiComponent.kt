@@ -20,7 +20,9 @@ class InstagramApiComponent() {
     val gcpBaseUrl: String = ""
     @Value("\${instagram.baseurl}")
     val baseUrl: String = ""
+    @Value("\${instagram.userid}")
     var userId: String = ""
+    @Value("\${instagram.accesstoken}")
     var accessToken: String = ""
 
     /**
@@ -30,9 +32,6 @@ class InstagramApiComponent() {
         if (env == "prod") {
             userId = getGcpMetaDataUserId()
             accessToken = getGcpMetaDataAccessToken()
-        } else {
-            userId = "\${instagram.userid}"
-            accessToken = "\${instagram.accesstoken}"
         }
     }
 

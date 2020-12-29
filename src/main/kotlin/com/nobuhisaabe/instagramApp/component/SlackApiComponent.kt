@@ -21,14 +21,16 @@ class SlackApiComponent() {
     val env: String = ""
     @Value("\${gcp.baseurl}")
     val gcpBaseUrl: String = ""
-    val slack = Slack.getInstance()
+    @Value("\${slack.token}")
     var token: String = ""
+    val slack = Slack.getInstance()
 
-    init {
+    /**
+     * 環境変数の初期化
+     */
+    fun initEnv() {
         if (env == "prod") {
             token = getGcpMetaDataAccessToken()
-        } else {
-            token = "\${slack.token}"
         }
     }
 
@@ -45,6 +47,7 @@ class SlackApiComponent() {
     }
 
     fun plainMessage(channel: String, message: String) {
+        initEnv()
         val request = ChatPostMessageRequest.builder()
                 .channel(channel)
                 .text(message)
@@ -53,6 +56,7 @@ class SlackApiComponent() {
     }
 
     fun blockMessage(channel: String, message: String) {
+        initEnv()
         val response = slack.methods(token).chatPostMessage { req -> req
                 .channel(channel)
                 .blocks {

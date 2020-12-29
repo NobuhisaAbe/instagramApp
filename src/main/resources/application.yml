@@ -5,9 +5,9 @@ server:
   port: 8080
 instagram:
   baseurl: https://graph.instagram.com/
-  userid: ${INSTAGRAM_USERID}
-  accesstoken: ${INSTAGRAM_ACCESSTOKEN}
+  userid: ${INSTAGRAM_USERID:hoge}
+  accesstoken: ${INSTAGRAM_ACCESSTOKEN:hoge}
 slack:
-  token: ${SLACK_TOKEN}
+  token: ${SLACK_TOKEN:hoge}
 gcp:
   baseurl: http://metadata.google.internal/computeMetadata/v1/project/attributes/
